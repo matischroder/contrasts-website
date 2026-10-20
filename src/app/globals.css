@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* Sage (the salon's own logo green), deep moss ink, bone paper and a clay accent. */
+@theme {
+  --color-ink: #1c231f;
+  --color-ink-2: #2a332d;
+  --color-ink-soft: #55605a;
+  --color-bone: #f5f2ea;
+  --color-bone-2: #ebe6da;
+  --color-sage: #8bb57a;
+  --color-sage-dark: #446b37;
+  --color-sage-soft: #dfead7;
+  --color-clay: #b4613f;
+
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+body {
+  background: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--color-sage); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-sage-dark); outline-offset: 3px; }
+
+@utility container-site {
+  width: 100%;
+  max-width: 74rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) { padding-inline: 2rem; }
+}
+
+/* Dotted leader between a service and its price. */
+@utility leader {
+  flex: 1;
+  min-width: 1.25rem;
+  border-bottom: 1.5px dotted color-mix(in srgb, currentColor 30%, transparent);
+  transform: translateY(-0.3em);
+}
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } }
+@utility animate-fade-up { animation: fade-up 500ms cubic-bezier(.2,.7,.2,1) both; }
