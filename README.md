@@ -29,5 +29,7 @@ The current site has no photos besides the logo, so this concept is type-led. Sa
 
 ## Deploy on Vercel
 
-New Project → import this repository → **Root Directory: `sites/contrasts`** → Deploy.
+New Project → import **`matischroder/contrasts-website`** → leave Root Directory empty → Deploy.
+
+(From the `helensvalelandscapesupplies` monorepo instead: Root Directory **`sites/contrasts`**.)
 Set `NEXT_PUBLIC_SITE_URL` once it has a real domain, and set `isPreview` to `false` when it replaces the live site.
