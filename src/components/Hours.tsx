@@ -3,13 +3,17 @@
 import { useSyncExternalStore } from "react";
 import { brisbaneNow, formatTime, week } from "@/lib/hours";
 
-const noop = () => () => {};
+/** Re-check the day every minute, like the OpenNow badge. */
+const everyMinute = (cb: () => void) => {
+  const id = setInterval(cb, 60_000);
+  return () => clearInterval(id);
+};
 
 /** Opening hours with today's row highlighted (after mount, in Brisbane time). */
 export function HoursTable({ tone = "dark" }: { tone?: "dark" | "light" }) {
   // Client-only: the server can't know the visitor's "today", so it renders no highlight.
   const today = useSyncExternalStore(
-    noop,
+    everyMinute,
     () => brisbaneNow().day,
     () => null,
   );
